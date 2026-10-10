@@ -1,6 +1,6 @@
 # WARC Archiver — Archivage web à valeur probante
 
-**Langue :** Français · [English (en-US)](README.en-US.md)
+**Langue :** Français · [English (en-US)](README.md)
 
 Application Windows (C# 14 / .NET 10, WinForms, thème sombre, interface en anglais) qui **conserve une page web et tout ce qu'elle charge**
 sous la forme d'une archive **WARC 1.1 (ISO 28500)**, la **scelle par deux empreintes cryptographiques (SHA-256 et SHA-512)**, consigne

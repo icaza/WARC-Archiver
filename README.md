@@ -1,6 +1,6 @@
 # WARC Archiver — Web archiving with evidentiary value
 
-**Language:** [Français](README.md) · English (en-US)
+**Language:** [Français](README_fr) · English (en-US)
 
 A Windows application that **preserves a web page and everything it loads**
 as a **WARC 1.1 (ISO 28500)** archive, **seals it with two cryptographic digests (SHA-256 and SHA-512)**, records
