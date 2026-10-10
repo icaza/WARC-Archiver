@@ -1,5 +1,10 @@
 # WARC Archiver — Web archiving with evidentiary value
 
+## Part of the Ostium toolset
+
+OstiumIAtrad is one of the Ostium tools — see also
+[Ostium OSINT Browser](https://github.com/icaza/Ostium-Osint-Browser).
+
 **Language:** [Français](README_fr.md) · English (en-US)
 
 A Windows application that **preserves a web page and everything it loads**
