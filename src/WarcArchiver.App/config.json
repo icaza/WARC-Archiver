@@ -1,0 +1,75 @@
+{
+  // WARC Archiver configuration. Edit this file, save it, then click "Reload" on the Settings page.
+  // Comments (//) and trailing commas are allowed. Invalid values are clamped to a safe range;
+  // an unreadable file is ignored (built-in defaults are used) and is never overwritten.
+
+  // Folder for archives, manifests, checksum files and the audit log. %VARIABLES% are expanded.
+  "outputDirectory": "%USERPROFILE%\\Documents\\WARC Archives",
+
+  // true  = .warc.gz (one gzip member per record: the standard layout, smaller on disk)
+  // false = plain .warc
+  "compressWarc": true,
+
+  // Digest written in the WARC-Block-Digest / WARC-Payload-Digest headers: "sha256" or "sha512".
+  // The manifest and checksum files always carry BOTH SHA-256 and SHA-512.
+  "warcPrimaryDigest": "sha256",
+
+  "network": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 WarcArchiver/1.0",
+    "acceptLanguage": "en-US,en;q=0.9",
+    "connectTimeoutSeconds": 15,
+    "requestTimeoutSeconds": 90,
+    "maxRedirects": 10,
+
+    // Simultaneous downloads (1-16). Lower = lighter on your machine and on the site.
+    "maxParallelDownloads": 4,
+
+    // Security: by default the app refuses loopback, private-network and link-local addresses,
+    // including when a public page redirects to one. Set to true only to archive internal sites.
+    "allowPrivateNetworks": false,
+
+    // Security: by default a bad TLS certificate stops the capture. Set to true to capture such
+    // a site anyway; the certificate problem is then recorded in the archive as evidence.
+    "allowInvalidCertificates": false,
+
+    // Optional HTTP proxy, e.g. "http://proxy.example.com:8080". Empty = direct connection.
+    // (The private-network protection cannot inspect addresses behind a proxy.)
+    "proxyUrl": ""
+  },
+
+  "limits": {
+    "maxResources": 500,
+    "maxResourceMegabytes": 50,
+    "maxTotalMegabytes": 1000,
+
+    // How many levels of stylesheet @import / url() references are followed after the page itself.
+    "maxCssDepth": 2,
+
+    // Largest HTML/CSS body (after decompression) that is scanned for further links.
+    "maxParseMegabytes": 8,
+
+    // Per-download memory buffer; bigger downloads spill to a temporary file.
+    "maxMemoryKilobytesPerBuffer": 256
+  },
+
+  // Initial state of the checkboxes on the Capture page.
+  "defaults": {
+    "includeScripts": true,
+    "includeStylesheets": true,
+    "includeImages": true,
+    "includeOtherAssets": true,
+    "includeThirdParty": true,
+    "operatorName": ""
+  },
+
+  "signing": {
+    // SHA-1 thumbprint of a certificate (with private key) in Windows "Current User > Personal"
+    // used to sign manifests by default. Empty = hash-only evidence unless chosen on the Capture page.
+    "certificateThumbprint": ""
+  },
+
+  "security": {
+    // Mark finished archives, manifests and checksum files as read-only.
+    "markFilesReadOnly": true
+  }
+}

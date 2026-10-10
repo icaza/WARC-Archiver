@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/WarcArchiver.Core/WarcArchiver.Core.csproj" />
+    <Project Path="src/WarcArchiver.App/WarcArchiver.App.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/WarcArchiver.SelfTest/WarcArchiver.SelfTest.csproj" />
+  </Folder>
+</Solution>

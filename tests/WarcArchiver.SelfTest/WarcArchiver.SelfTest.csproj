@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>WarcArchiver.SelfTest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Kestrel is used only here, to serve a local test site (HTTP and HTTPS) to the capture engine. -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="..\..\src\WarcArchiver.Core\WarcArchiver.Core.csproj" />
+  </ItemGroup>
+
+</Project>
