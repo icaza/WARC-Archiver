@@ -2,7 +2,7 @@
 
 **Langue :** Français · [English (en-US)](README.md)
 
-Application Windows (C# 14 / .NET 10, WinForms, thème sombre, interface en anglais) qui **conserve une page web et tout ce qu'elle charge**
+Application Windows qui **conserve une page web et tout ce qu'elle charge**
 sous la forme d'une archive **WARC 1.1 (ISO 28500)**, la **scelle par deux empreintes cryptographiques (SHA-256 et SHA-512)**, consigne
 la capture dans un **journal d'audit chaîné** et peut la **signer** avec un certificat X.509. Un vérificateur intégré — et des outils
 tiers — permettent de re-contrôler le tout, sans avoir à faire confiance au programme.
