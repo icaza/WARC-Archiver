@@ -2,7 +2,7 @@
 
 ## Fait partie de la suite d'outils Ostium
 
-OstiumIAtrad est l'un des outils Ostium — voir aussi
+WARC-Archiver est l'un des outils Ostium — voir aussi
 [Ostium OSINT Browser](https://github.com/icaza/Ostium-Osint-Browser).
 
 **Langue :** Français · [English (en-US)](README.md)
