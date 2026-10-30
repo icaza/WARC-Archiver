@@ -206,8 +206,8 @@ fournir des éléments **techniques, documentés et vérifiables** plutôt qu'un
 | Code civil, art. 1366 | L'écrit électronique a la même force probante que l'écrit papier, sous réserve que **la personne dont il émane soit dûment identifiée** et qu'il soit **établi et conservé dans des conditions de nature à en garantir l'intégrité**. | Identification : opérateur, référence du dossier, signature X.509 facultative, journal d'audit. Intégrité : double empreinte à trois niveaux, lecture seule, vérificateur, conservation recommandée (section 4). |
 | Code civil, art. 1367 ; décret n° 2017-1416 | Une signature électronique **qualifiée** bénéficie d'une présomption de fiabilité. | La signature de l'application est une **signature simple** : elle n'est pas, en l'état, une signature qualifiée. Elle reste un élément d'imputabilité librement apprécié. |
 | Règlement (UE) n° 910/2014 (eIDAS), art. 25 | Une signature électronique ne peut être refusée comme preuve en justice **au seul motif** qu'elle est électronique ou qu'elle n'est pas qualifiée. | La signature facultative du manifeste ne peut être écartée *pour ce seul motif*. |
-| Règlement (UE) n° 910/2014, art. 41 | Un **horodatage électronique qualifié** bénéficie d'une présomption d'exactitude de la date et de l'heure et d'intégrité des données. | **Non intégré.** Fortement recommandé en complément pour dater de façon opposable (section 4, étape 6). |
-| Constat de commissaire de justice (ex-huissier) ; norme AFNOR NF Z67-147 | Force probante renforcée d'un constat réalisé par un officier public, avec procédure normalisée pour les constats sur Internet. | L'application **ne remplace pas** un constat. Elle le **complète** (collecte rapide, conservation complète, contrôle ultérieur) ou le prépare. |
+| Règlement (UE) n° 910/2014, art. 41 | Un **horodatage électronique qualifié** bénéficie d'une présomption d'exactitude de la date et de l'heure et d'intégrité des données. | **Non intégré.** Fortement recommandé en complément pour dater de façon opposable (section 4, étape 6). Voir l'application complémentaire [WarcSigner](https://github.com/icaza/WARC-Archiver/WarcSigner) |
+| Constat de commissaire de justice (ex-huissier) ; norme AFNOR NF Z67-147 | Force probante renforcée d'un constat réalisé par un officier public, avec procédure normalisée pour les constats sur Internet. | L'application **ne remplace pas** un constat. Elle le **complète** (collecte rapide, conservation complète, contrôle ultérieur) ou le prépare. Pour une capture selon la norme **AFNOR NF Z67-147**, voir l'application  [Evidence Collector](https://github.com/icaza/EvidenceCollector)|
 | ISO/IEC 27037 | Lignes directrices pour l'identification, la collecte, l'acquisition et la préservation des preuves numériques : documentation, traçabilité, reproductibilité, altération minimale. | La conception s'en **inspire** (journal, manifeste, empreintes, procédé sans interprétation). Aucune certification n'est revendiquée. |
 | RGPD | Une page archivée peut contenir des données personnelles. | La conservation à des fins de constatation, d'exercice ou de défense d'un droit en justice peut se justifier ; définissez finalité, durée de conservation et accès. |
 | À titre d'information, hors UE | États-Unis : règles 902(13) et 902(14) des *Federal Rules of Evidence* (authentification de données électroniques, notamment par valeur de hachage, sur attestation d'une personne qualifiée). | Même logique : l'empreinte est le support de l'authentification. |
@@ -247,7 +247,7 @@ L'outil produit des éléments techniques solides ; **la manière de s'en servir
    curl -H "Content-Type: application/timestamp-query" --data-binary @demande.tsq https://<URL-DU-SERVICE-D-HORODATAGE> -o reponse.tsr
    openssl ts -verify -in reponse.tsr -queryfile demande.tsq -CAfile <chaine-de-certification-du-prestataire>.pem
    ```
-   Conservez `demande.tsq`, `reponse.tsr` et la chaîne de certification du prestataire avec l'archive.
+   Conservez `demande.tsq`, `reponse.tsr` et la chaîne de certification du prestataire avec l'archive Voir l'application complémentaire [WarcSigner](https://github.com/icaza/WARC-Archiver/WarcSigner).
 7. **Conserver correctement.** Gardez ensemble l'archive, le manifeste, les `.sha256`/`.sha512`, la signature, le **journal d'audit** et le rapport de vérification. Faites **plusieurs copies**
    (dont une hors ligne, sur support non réinscriptible si possible), notez l'empreinte SHA-256 dans un document séparé et **travaillez toujours sur une copie**, jamais sur l'original.
 8. **Pour un enjeu important,** doublez d'un **constat de commissaire de justice**. L'archive reste utile : elle conserve davantage (toutes les ressources, les échanges bruts) et se re-contrôle.
@@ -328,22 +328,22 @@ dotnet run --project src/WarcArchiver.App -c Release
 **Dossier prêt à copier** (`publish\`) :
 
 ```powershell
-.\publish.cmd            # petite version : l'ordinateur cible doit avoir le « .NET Desktop Runtime 10 » (x64)
+.\publish.cmd            # version small : l'ordinateur cible doit avoir le « .NET Desktop Runtime 10 » (x64)
 .\publish.cmd portable   # version autonome (environ 150 Mo) : fonctionne sur tout Windows 10/11 x64, sans rien installer
 ```
 
-Copiez **le dossier entier** (`WarcArchiver.exe`, `WarcArchiver.dll`, `WarcArchiver.runtimeconfig.json`, `config.json`…), pas seulement l'exécutable, pour la petite version.
+Copiez **le dossier entier** (`WarcArchiver.exe`, `WarcArchiver.dll`, `WarcArchiver.runtimeconfig.json`, `config.json`…), pas seulement l'exécutable, pour la version small.
 
 ### « You must install .NET Desktop Runtime to run this application »
 
-La petite version nécessite le **.NET Desktop Runtime 10 (x64)** sur le PC qui l'exécute. Vérifiez avec `dotnet --list-runtimes` : la liste doit contenir `Microsoft.WindowsDesktop.App 10.0.x`.
+La version small nécessite le **.NET Desktop Runtime 10 (x64)** sur le PC qui l'exécute. Vérifiez avec `dotnet --list-runtimes` : la liste doit contenir `Microsoft.WindowsDesktop.App 10.0.x`.
 (Le « .NET Runtime » seul et l'« ASP.NET Core Runtime » ne le contiennent **pas**, et une installation x86 ne convient pas à un programme x64.) Installez-le depuis
 <https://dotnet.microsoft.com/download/dotnet/10.0> ou compilez la version autonome avec `.\publish.cmd portable`.
 
 **Test du moteur** (démarre un site de test local HTTP + HTTPS ; fonctionne sous Windows et Linux) :
 
 ```
-dotnet run --project tests/WarcArchiver.SelfTest -- <dossier-de-travail>
+dotnet run --project tests/WarcArchiver.SelfTest -- "dossier-de-travail"
 ```
 
 ---
@@ -417,21 +417,6 @@ src/WarcArchiver.App         interface WinForms ; chaque contrôle est déclaré
 tests/WarcArchiver.SelfTest  155 contrôles de bout en bout sur un site local HTTP/HTTPS
 ```
 
-### Modifier l'interface dans Visual Studio
-
-Ouvrez `MainForm.cs` dans le Designer : chaque contrôle, couleur, police, marge et événement est une simple affectation de propriété dans `MainForm.Designer.cs` ; ce que le Designer montre est ce qui s'exécute.
-
-* **Gardez `InitializeComponent()` pur.** Du code ajouté à cet endroit (méthodes d'aide, boucles, `var`, appels à `DarkTheme`) n'est pas compris par le Designer et **supprimé à la prochaine
-  sauvegarde du formulaire**, ce qui laisse des boutons vides et des mises en page écrasées. Placez votre code dans `MainForm.cs`, après l'appel à `InitializeComponent()`.
-* **Les cinq pages sont empilées.** Dans le Designer, seule la page *Capture* est au premier plan. Pour travailler sur une autre : *Affichage → Autres fenêtres → Plan du document*, sélectionnez par exemple
-  `archivesPage`, clic droit → *Mettre au premier plan*. L'ordre d'empilement est sans effet à l'exécution (le code du menu décide quelle page est visible).
-* **Les couleurs sont dans le fichier Designer** (fond `18,20,24`, surface `26,29,35`, relevé `34,38,46`, bordure `52,58,68`, texte `230,232,235`, atténué `154,163,175`, accent `76,154,255`).
-  `Theme/DarkTheme.cs` n'ajoute que ce qu'un fichier Designer ne peut pas stocker : le rendu sombre de la barre d'état, l'aspect grisé des boutons désactivés, les grilles sans scintillement et les barres de défilement/titre sombres.
-* `Button.Tag` a un sens : `"nav"` pour les boutons du menu, `"primary"` pour les boutons d'action bleus.
-* Le texte *Version*, le changement de page et la liste des certificats sont renseignés par le code ; ne les saisissez pas dans le Designer.
-
----
-
 ## 12. Glossaire
 
 | Terme | Signification |
@@ -447,3 +432,7 @@ Ouvrez `MainForm.cs` dans le Designer : chaque contrôle, couleur, police, marge
 | **Écart d'horloge (`clockSkewSeconds`)** | Différence entre l'heure indiquée par le serveur (en-tête `Date`) et l'horloge UTC du PC au moment de la requête (inclut la latence réseau et un arrondi à la seconde). |
 | **eIDAS** | Règlement européen n° 910/2014 sur l'identification électronique et les services de confiance (signatures, cachets, horodatages). |
 | **Commissaire de justice** | Officier public et ministériel issu de la fusion des huissiers de justice et des commissaires-priseurs judiciaires ; peut dresser des constats, y compris sur Internet. |
+
+## 📜 License
+
+MIT

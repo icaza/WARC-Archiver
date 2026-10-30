@@ -1,0 +1,12 @@
+{
+  "tsaUrl": "https://tsa.example.com/rfc3161",
+  "rootCertificate": "tsa-root.cer",
+  "authentication": {
+    "username": "my-account",
+    "passwordEnv": "WARCSIGNER_TSA_PASSWORD"
+  },
+  "clientCertificate": {
+    "pfxPath": "my-client-cert.pfx",
+    "passwordEnv": "WARCSIGNER_PFX_PASSWORD"
+  }
+}

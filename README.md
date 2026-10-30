@@ -1,6 +1,6 @@
 # WARC Archiver — Web archiving with evidentiary value
 
-## Part of the Ostium toolset
+### Part of the Ostium toolset
 
 WARC-Archiver is one of the Ostium tools — see also
 [Ostium OSINT Browser](https://github.com/icaza/Ostium-Osint-Browser).
@@ -206,8 +206,8 @@ it provides **technical, documented and verifiable** elements rather than a mere
 | Civil Code, art. 1366 | An electronic document has the same probative force as a paper one, provided that **the person it comes from is duly identified** and that it is **created and kept under conditions that guarantee its integrity**. | Identification: operator, case reference, optional X.509 signature, audit log. Integrity: dual digests at three levels, read-only files, verifier, recommended retention practice (section 4). |
 | Civil Code, art. 1367; decree no. 2017-1416 | A **qualified** electronic signature enjoys a presumption of reliability. | The application's signature is a **simple signature**: as it stands, it is not a qualified signature. It remains an element of attribution that the judge is free to weigh. |
 | Regulation (EU) No 910/2014 (eIDAS), art. 25 | An electronic signature cannot be denied admissibility as evidence in legal proceedings **solely on the grounds** that it is electronic or that it is not qualified. | The optional signature of the manifest cannot be set aside *on that ground alone*. |
-| Regulation (EU) No 910/2014, art. 41 | A **qualified electronic time stamp** enjoys a presumption of accuracy of the date and time and of integrity of the data. | **Not built in.** Strongly recommended as a complement to date the capture in an enforceable way (section 4, step 6). |
-| Report by a *commissaire de justice* (formerly *huissier*); AFNOR standard NF Z67-147 | Reinforced probative force of a report drawn up by a public officer, with a standardized procedure for reports on the Internet. | The application **does not replace** such a report. It **complements** it (fast collection, complete preservation, later checking) or prepares it. |
+| Regulation (EU) No 910/2014, art. 41 | A **qualified electronic time stamp** enjoys a presumption of accuracy of the date and time and of integrity of the data. | **Not built in.** Strongly recommended as a complement to date the capture in an enforceable way (section 4, step 6). See the supplementary application [WarcSigner](https://github.com/icaza/WARC-Archiver/WarcSigner) |
+| Report by a *commissaire de justice* (formerly *huissier*); AFNOR standard NF Z67-147 | Reinforced probative force of a report drawn up by a public officer, with a standardized procedure for reports on the Internet. | The application **does not replace** such a report. It **complements** it (fast collection, complete preservation, later checking) or prepares it. For capture in accordance with the **AFNOR NF Z67-147** standard, see the application [Evidence Collector](https://github.com/icaza/EvidenceCollector) |
 | ISO/IEC 27037 | Guidelines for the identification, collection, acquisition and preservation of digital evidence: documentation, traceability, reproducibility, minimal alteration. | The design is **inspired by** it (log, manifest, digests, process without interpretation). No certification is claimed. |
 | GDPR (RGPD) | An archived page may contain personal data. | Retention for the purpose of establishing, exercising or defending a legal claim may be justified; define the purpose, retention period and access. |
 | For information, outside the EU | United States: rules 902(13) and 902(14) of the *Federal Rules of Evidence* (authentication of electronic data, notably by hash value, on certification by a qualified person). | Same logic: the digest is what supports authentication. |
@@ -247,7 +247,7 @@ The tool produces solid technical elements; **how you use it** does the rest.
    curl -H "Content-Type: application/timestamp-query" --data-binary @request.tsq https://<TIMESTAMP-SERVICE-URL> -o response.tsr
    openssl ts -verify -in response.tsr -queryfile request.tsq -CAfile <provider-certificate-chain>.pem
    ```
-   Keep `request.tsq`, `response.tsr` and the provider's certificate chain together with the archive.
+   Keep `request.tsq`, `response.tsr` and the provider's certificate chain together with the archive See the supplementary application [WarcSigner](https://github.com/icaza/WARC-Archiver/WarcSigner).
 7. **Retain properly.** Keep the archive, manifest, `.sha256`/`.sha512` files, signature, **audit log** and verification report together. Make **several copies**
    (including one offline, on write-once media if possible), note the SHA-256 digest in a separate document and **always work on a copy**, never on the original.
 8. **For anything important,** back it up with a **report by a *commissaire de justice***. The archive remains useful: it preserves more (every resource, the raw exchanges) and can be re-checked.
@@ -343,7 +343,7 @@ The small version needs the **.NET Desktop Runtime 10 (x64)** on the PC that run
 **Engine test** (starts a local HTTP + HTTPS test site; works on Windows and Linux):
 
 ```
-dotnet run --project tests/WarcArchiver.SelfTest -- <working-folder>
+dotnet run --project tests/WarcArchiver.SelfTest -- "working-folder"
 ```
 
 ---
@@ -417,21 +417,6 @@ src/WarcArchiver.App         WinForms interface; every control is declared in Ma
 tests/WarcArchiver.SelfTest  155 end-to-end checks against a local HTTP/HTTPS site
 ```
 
-### Editing the interface in Visual Studio
-
-Open `MainForm.cs` in the Designer: every control, color, font, margin and event is a plain property assignment in `MainForm.Designer.cs`; what the Designer shows is what runs.
-
-* **Keep `InitializeComponent()` pure.** Code added there (helper methods, loops, `var`, calls to `DarkTheme`) is not understood by the Designer and is **removed the next
-  time the form is saved**, leaving empty buttons and flattened layouts. Put your code in `MainForm.cs`, after the call to `InitializeComponent()`.
-* **The five pages are stacked.** In the Designer, only the *Capture* page is in front. To work on another one: *View → Other Windows → Document Outline*, select for example
-  `archivesPage`, right-click → *Bring to Front*. The stacking order has no effect at run time (the menu code decides which page is visible).
-* **The colors are in the Designer file** (background `18,20,24`, surface `26,29,35`, raised `34,38,46`, border `52,58,68`, text `230,232,235`, muted `154,163,175`, accent `76,154,255`).
-  `Theme/DarkTheme.cs` only adds what a Designer file cannot store: the dark rendering of the status bar, the greyed-out look of disabled buttons, flicker-free grids and dark scroll bars/title bar.
-* `Button.Tag` has a meaning: `"nav"` for the menu buttons, `"primary"` for the blue action buttons.
-* The *Version* text, page switching and the list of certificates are filled in by code; do not enter them in the Designer.
-
----
-
 ## 12. Glossary
 
 | Term | Meaning |
@@ -447,3 +432,7 @@ Open `MainForm.cs` in the Designer: every control, color, font, margin and event
 | **Clock offset (`clockSkewSeconds`)** | Difference between the time given by the server (`Date` header) and the PC's UTC clock at the time of the request (includes network latency and rounding to the second). |
 | **eIDAS** | European Regulation No 910/2014 on electronic identification and trust services (signatures, seals, time stamps). |
 | **Commissaire de justice** | A French public and ministerial officer, created by merging the *huissiers de justice* (bailiffs) and the *commissaires-priseurs judiciaires* (judicial auctioneers); can draw up reports, including on the Internet. |
+
+## 📜 License
+
+MIT
