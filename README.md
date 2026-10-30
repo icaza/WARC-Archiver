@@ -1,5 +1,9 @@
 # WARC Archiver — Web archiving with evidentiary value
 
+## Avertissement Juridique / Legal Disclaimer
+
+This fully functional tool has been developed to ensure optimal technical reliability and serves as an aid for data collection. The authors disclaim any liability regarding the use, interpretation, or consequences arising from the application of this tool within the context of actual legal proceedings or disputes.
+
 ### Part of the Ostium toolset
 
 WARC-Archiver is one of the Ostium tools — see also
