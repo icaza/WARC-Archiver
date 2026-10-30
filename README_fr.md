@@ -1,9 +1,5 @@
 # WARC Archiver — Archivage web à valeur probante
 
-## Avertissement Juridique / Legal Disclaimer
-
-Cet outil pleinement fonctionnel est développé pour garantir une fiabilité technique optimale, ce logiciel constitue une aide à la collecte. Les auteurs déclinent toute responsabilité quant à l'usage, l'interprétation ou les suites données à l'utilisation de cet outil dans le cadre de procédures judiciaires ou de litiges réels.
-
 ## Fait partie de la suite d'outils Ostium
 
 WARC-Archiver est l'un des outils Ostium — voir aussi
@@ -436,6 +432,10 @@ tests/WarcArchiver.SelfTest  155 contrôles de bout en bout sur un site local HT
 | **Écart d'horloge (`clockSkewSeconds`)** | Différence entre l'heure indiquée par le serveur (en-tête `Date`) et l'horloge UTC du PC au moment de la requête (inclut la latence réseau et un arrondi à la seconde). |
 | **eIDAS** | Règlement européen n° 910/2014 sur l'identification électronique et les services de confiance (signatures, cachets, horodatages). |
 | **Commissaire de justice** | Officier public et ministériel issu de la fusion des huissiers de justice et des commissaires-priseurs judiciaires ; peut dresser des constats, y compris sur Internet. |
+
+## Avertissement Juridique / Legal Disclaimer
+
+Cet outil pleinement fonctionnel est développé pour garantir une fiabilité technique optimale, ce logiciel constitue une aide à la collecte. Les auteurs déclinent toute responsabilité quant à l'usage, l'interprétation ou les suites données à l'utilisation de cet outil dans le cadre de procédures judiciaires ou de litiges réels.
 
 ## 📜 License
 

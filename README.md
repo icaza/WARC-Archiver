@@ -1,9 +1,5 @@
 # WARC Archiver — Web archiving with evidentiary value
 
-## Avertissement Juridique / Legal Disclaimer
-
-This fully functional tool has been developed to ensure optimal technical reliability and serves as an aid for data collection. The authors disclaim any liability regarding the use, interpretation, or consequences arising from the application of this tool within the context of actual legal proceedings or disputes.
-
 ### Part of the Ostium toolset
 
 WARC-Archiver is one of the Ostium tools — see also
@@ -436,6 +432,10 @@ tests/WarcArchiver.SelfTest  155 end-to-end checks against a local HTTP/HTTPS si
 | **Clock offset (`clockSkewSeconds`)** | Difference between the time given by the server (`Date` header) and the PC's UTC clock at the time of the request (includes network latency and rounding to the second). |
 | **eIDAS** | European Regulation No 910/2014 on electronic identification and trust services (signatures, seals, time stamps). |
 | **Commissaire de justice** | A French public and ministerial officer, created by merging the *huissiers de justice* (bailiffs) and the *commissaires-priseurs judiciaires* (judicial auctioneers); can draw up reports, including on the Internet. |
+
+## Avertissement Juridique / Legal Disclaimer
+
+This fully functional tool has been developed to ensure optimal technical reliability and serves as an aid for data collection. The authors disclaim any liability regarding the use, interpretation, or consequences arising from the application of this tool within the context of actual legal proceedings or disputes.
 
 ## 📜 License
 
